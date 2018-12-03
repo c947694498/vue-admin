@@ -9,6 +9,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
+      <div class="menu-switch" @click="menuSwitch">菜单</div>
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+import store from '@/store';
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -40,24 +43,42 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
-
+    },
+    menuSwitch() {
+      store.commit('TOGGLE_SIDEBAR');
     }
-  }
+  },
+  computed: {
+    ...mapState({
+      sidebar:'sidebar'
+    })
+  },
 }
 </script>
 
-<style>
+<style lang="scss">
 .navbar {
-	position: fixed;
-  top: 0;
-  right: 0;
-	width: calc(100% - 200px);
+  .el-menu--horizontal > .el-menu-item,
+  .el-menu--horizontal > .el-submenu {
+    float: right;
+  }
 }
-.navbar .el-menu--horizontal>.el-menu-item,
-.navbar .el-menu--horizontal>.el-submenu{
-	float: right;
-}
-
 </style>
+
+<style lang="scss" scoped>
+.menu-switch {
+  float: left;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 20px;
+  outline: none;
+}
+.menu-switch:hover {
+  background-color: rgb(64, 74, 80);
+  cursor: pointer;
+}
+</style>
+
 
 

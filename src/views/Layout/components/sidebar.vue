@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-      <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="sidebar.opened">
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -32,36 +32,44 @@
         <span slot="title">导航四</span>
       </el-menu-item>
     </el-menu>
-
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-    data() {
-      return {
-        isCollapse: true
-      };
+  data() {
+    return {
+    };
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
     }
+  },
+  computed: {
+    ...mapState({
+      sidebar: 'sidebar'
+    })
+  }
 }
 </script>
 
 <style>
-.sidebar{
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
 }
-.sidebar .el-menu-vertical-demo{
+.sidebar .el-menu-vertical-demo {
   height: 100%;
 }
 </style>

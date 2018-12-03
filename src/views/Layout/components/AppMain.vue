@@ -16,9 +16,5 @@ export default {
 </script>
 
 <style>
-.app-main {
-  width: calc(100% - 200px);
-  margin-left: 200px;
-  margin-top: 61px;
-}
+
 </style>
