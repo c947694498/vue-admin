@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="navbar">
     <el-menu
-      :default-active="activeIndex2"
+      :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
       @select="handleSelect"
@@ -32,7 +32,32 @@
 
 <script>
 export default {
-  name: 'navbar',
+  data() {
+    return {
+      activeIndex: '1'
+    }
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+
+    }
+  }
 }
 </script>
+
+<style>
+.navbar {
+	position: fixed;
+  top: 0;
+  right: 0;
+	width: calc(100% - 200px);
+}
+.navbar .el-menu--horizontal>.el-menu-item,
+.navbar .el-menu--horizontal>.el-submenu{
+	float: right;
+}
+
+</style>
+
 
